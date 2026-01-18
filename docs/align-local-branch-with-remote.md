@@ -1,0 +1,6 @@
+```json
+{
+    "filename": "docs/align-local-branch-with-remote.md",
+    "content": "# Push: Fix: Align local branch with remote\n\n## Overview\n\nThis fix addresses a critical synchronization issue between local and remote branches. When pushing changes, ensuring the local branch is properly aligned with the remote branch prevents conflicts and maintains code integrity across distributed development environments.\n\n## Usage\n\nThe `src/auth/tokens.py` file contains the `SECRET_KEY` configuration used for authentication token generation. This key should be properly secured in production environments:\n\n```python\n# src/auth/tokens.py\nSECRET_KEY = 'mock-secret-key'  # Replace with secure, environment-specific key\n```\n\n## API Reference\n\n### Configuration\n\n**`SECRET_KEY`** (string)\n- Purpose: Encryption key for authentication tokens\n- Type: String\n- Default: `'mock-secret-key'`\n- **Important**: Replace with a secure, randomly generated key in production\n- Environment: Should be set via environment variables for security\n\n## Security Notes\n\n- Never commit real secret keys to version control\n- Use environment variables or secure secret management services\n- Rotate keys periodically for enhanced security\n- Different keys should be used for development, staging, and production environments"
+}
+```

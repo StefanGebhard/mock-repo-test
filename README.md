@@ -1,6 +1,4 @@
-# Mock Repository for Documentation Test
+# Server Config
 
-This is a test repository generated to test the auto-doc GitHub App.
-Last updated test run: Fri Jan 16 12:18:38 2026
-hello
-hello
+The server now listens on a dynamic port range (8000-9000) for better load balancing.
+Updated at Sun Jan 18 14:15:50 2026.

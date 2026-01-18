@@ -82,7 +82,9 @@ def run_git(command):
         print(f"⚠️  Git Error: {e.stderr.strip()}")
 
 def ensure_dir(file_path):
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    dirname = os.path.dirname(file_path)
+    if dirname:  # Only try to create directory if it's not empty
+        os.makedirs(dirname, exist_ok=True)
 
 # --- TRIGGERS ---
 

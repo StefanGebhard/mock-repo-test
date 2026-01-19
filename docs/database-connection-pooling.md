@@ -1,4 +1,36 @@
-{
-  "filename": "docs/database-connection-pooling.md",
-  "content": "# Add Database Connection Pooling\n\n## Overview\nThis module introduces a new `DB` class designed to handle database connections via a connection pool. This change improves performance by reducing the overhead of repeatedly opening and closing individual connections, allowing for efficient reuse of existing connections across the application. The primary goal is to enhance scalability and manage database resource utilization effectively.\n\n## Usage\nThe `DB` class provides a straightforward interface for establishing connections. Here is a basic example of how to use it:\n\n```python\nfrom src.db import DB\n\n# Instantiate the database connection manager\ndb = DB()\n\n# Connect to the database pool\ndb.connect()\n# Output: Connected to pool\n```\n\nIn a real-world application, the `connect` method would likely be integrated into a connection pool management system, establishing a pool of connections at application startup.\n\n## API Reference\n### DB Class\nThe `DB` class encapsulates the database connection pooling functionality.\n\n#### Methods\n- `connect(self)`: Initiates a connection to the database connection pool. This method is currently implemented as a placeholder that prints a confirmation message. In a production environment, it would establish a connection to a configured database and manage the connection lifecycle.\n\n## Implementation Notes\nThe current implementation is a foundational step. Future enhancements should include:\n- Configuration of database credentials and connection pool parameters (e.g., pool size, timeout).\n- Methods to acquire and release connections from the pool.\n- Integration with transaction management and error handling.\n- Support for multiple database dialects (e.g., PostgreSQL, MySQL).\n\nFor further details on architectural updates, refer to the updated architecture documentation."
-}
+# Add Database Connection Pooling
+
+## Overview
+This module introduces a new `DB` class designed to handle database connections via a connection pool. This change improves performance by reducing the overhead of repeatedly opening and closing individual connections, allowing for efficient reuse of existing connections across the application. The primary goal is to enhance scalability and manage database resource utilization effectively.
+
+## Usage
+The `DB` class provides a straightforward interface for establishing connections. Here is a basic example of how to use it:
+
+```python
+from src.db import DB
+
+# Instantiate the database connection manager
+db = DB()
+
+# Connect to the database pool
+db.connect()
+# Output: Connected to pool
+```
+
+In a real-world application, the `connect` method would likely be integrated into a connection pool management system, establishing a pool of connections at application startup.
+
+## API Reference
+### DB Class
+The `DB` class encapsulates the database connection pooling functionality.
+
+#### Methods
+- `connect(self)`: Initiates a connection to the database connection pool. This method is currently implemented as a placeholder that prints a confirmation message. In a production environment, it would establish a connection to a configured database and manage the connection lifecycle.
+
+## Implementation Notes
+The current implementation is a foundational step. Future enhancements should include:
+- Configuration of database credentials and connection pool parameters (e.g., pool size, timeout).
+- Methods to acquire and release connections from the pool.
+- Integration with transaction management and error handling.
+- Support for multiple database dialects (e.g., PostgreSQL, MySQL).
+
+For further details on architectural updates, refer to the updated architecture documentation.

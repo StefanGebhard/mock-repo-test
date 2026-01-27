@@ -1,5 +1,5 @@
 
-function add(a, b, c) {
+function add(a, b, c, d) {
     // Fixed logic to handle string inputs
-    return Number(a) + Number(b) + Number(c);
+    return Number(a) + Number(b) + Number(c) + Number(d);
 }

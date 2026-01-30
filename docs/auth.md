@@ -15,25 +15,28 @@ from src.auth import build_oauth_url
 
 client_id = "my-app-123"
 redirect_uri = "https://myapp.com/auth/callback"
+state_param = "unique-csrf-token-123"
 
 # Build URL for Google
 google_url = build_oauth_url(
     provider="google",
     client_id=client_id,
     redirect_uri=redirect_uri,
-    scope="email profile"
+    scope="email profile",
+    state=state_param
 )
 print(google_url)
-# Output: https://accounts.google.com/o/oauth2/v2/auth?client_id=my-app-123&redirect_uri=https://myapp.com/auth/callback&response_type=code&scope=email profile
+# Output: https://accounts.google.com/o/oauth2/v2/auth?client_id=my-app-123&redirect_uri=https://myapp.com/auth/callback&response_type=code&scope=email+profile&state=unique-csrf-token-123
 
 # Build URL for a default scope provider (e.g., GitHub)
 github_url = build_oauth_url(
     provider="github",
     client_id=client_id,
-    redirect_uri=redirect_uri
+    redirect_uri=redirect_uri,
+    state=state_param
 )
 print(github_url)
-# Output: https://github.com/login/oauth/authorize?client_id=my-app-123&redirect_uri=https://myapp.com/auth/callback&response_type=code&scope=openid
+# Output: https://github.com/login/oauth/authorize?client_id=my-app-123&redirect_uri=https://myapp.com/cb&response_type=code&scope=openid&state=unique-csrf-token-123
 ```
 
 ### Example: Simulating a Login Redirect
@@ -56,15 +59,16 @@ print(redirect_message)
 
 ### Functions
 
-#### `build_oauth_url(provider: str, client_id: str, redirect_uri: str, scope: str = "openid") -> str`
+#### `build_oauth_url(provider: str, client_id: str, redirect_uri: str, scope: str = "openid", state: str = "") -> str`
 
-Constructs a simulated OAuth 2.0 authorization URL based on the provided provider and credentials.
+Constructs a simulated OAuth 2.0 authorization URL based on the provided provider and credentials. A non-empty `state` parameter is highly recommended for testing CSRF protection.
 
 **Parameters:**
 * `provider` (`str`): The name of the provider (must be in `ALLOWED_PROVIDERS`).
 * `client_id` (`str`): Your application's client ID.
 * `redirect_uri` (`str`): The URI where the authorization server will redirect the user.
 * `scope` (`str`, optional): The requested OAuth scope(s). Defaults to `"openid"`.
+* `state` (`str`, optional): The opaque value used by the client to maintain state between the request and callback. Defaults to an empty string.
 
 **Returns:**
 * `str`: The fully constructed authorization URL.

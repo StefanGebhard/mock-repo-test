@@ -14,6 +14,7 @@ This feature exposes two primary functions: `build_oauth_url` for constructing t
 from src.auth import build_oauth_url
 
 client_id = "my-app-123"
+client_secret = "my-secret-xyz" # Note: client_secret is generally NOT included in the initial GET request URL, but listed here for completeness if other optional params are needed.
 redirect_uri = "https://myapp.com/auth/callback"
 
 # Build URL for Google
@@ -56,15 +57,16 @@ print(redirect_message)
 
 ### Functions
 
-#### `build_oauth_url(provider: str, client_id: str, redirect_uri: str, scope: str = "openid") -> str`
+#### `build_oauth_url(provider: str, client_id: str, redirect_uri: str, scope: str = "openid", **kwargs) -> str`
 
-Constructs a simulated OAuth 2.0 authorization URL based on the provided provider and credentials.
+Constructs a simulated OAuth 2.0 authorization URL based on the provided provider and credentials. Note that `client_secret` is typically used for the token exchange step and is **not** included in this initial authorization URL.
 
 **Parameters:**
 * `provider` (`str`): The name of the provider (must be in `ALLOWED_PROVIDERS`).
 * `client_id` (`str`): Your application's client ID.
 * `redirect_uri` (`str`): The URI where the authorization server will redirect the user.
 * `scope` (`str`, optional): The requested OAuth scope(s). Defaults to `"openid"`.
+* `**kwargs`: Allows passing any additional query parameters that the specific provider URL builder might require (e.g., `code_challenge` for PKCE).
 
 **Returns:**
 * `str`: The fully constructed authorization URL.
